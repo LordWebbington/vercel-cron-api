@@ -1,0 +1,14 @@
+name: Schedule Serverless Function
+
+on:
+  schedule:
+    # Runs at 6 AM UTC every day
+    - cron: '0 6 * * *'
+
+jobs:
+  trigger-serverless-function:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Invoke serverless function
+        run: |
+          curl -X GET 'https://vercel-cron-api.vercel.app/api/data_pipeline'
